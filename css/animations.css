@@ -1,0 +1,91 @@
+/* ============================================================
+   FREESTACK OS — animations.css
+   every @keyframes + the rules that apply them
+   ============================================================ */
+
+/* ---------- scanline loop (6s) ---------- */
+@keyframes scan {
+  0%   { transform: translateY(-30vh); }
+  100% { transform: translateY(160vh); }
+}
+.scanline { animation: scan 6s linear infinite; }
+
+/* ---------- blink (clock colons + hero cursor) ---------- */
+@keyframes blink {
+  50% { opacity: 0; }
+}
+.clock .colon { animation: blink 1s steps(1) infinite; }
+.hero h1 .cursor { animation: blink 0.9s steps(1) infinite; }
+
+/* ---------- card enter (staggered via inline animation-delay) ---------- */
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.card {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: card-in 0.5s cubic-bezier(0.22, 0.9, 0.3, 1) forwards;
+}
+
+/* ---------- page load staggered reveal ---------- */
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: reveal-in 0.6s cubic-bezier(0.22, 0.9, 0.3, 1) forwards;
+}
+.rd-1 { animation-delay: 0.05s; }
+.rd-2 { animation-delay: 0.15s; }
+.rd-3 { animation-delay: 0.28s; }
+.rd-4 { animation-delay: 0.4s; }
+
+/* ---------- card shimmer sweep (on hover) ---------- */
+@keyframes shimmer {
+  to { left: 130%; }
+}
+.card:hover::before { animation: shimmer 0.8s ease forwards; }
+
+/* ---------- spring sidebar indicator ---------- */
+.cat-indicator {
+  transition:
+    top 0.55s var(--spring),
+    height 0.3s ease,
+    background 0.3s,
+    box-shadow 0.3s;
+}
+
+/* ---------- toast fade in / out ---------- */
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes toast-out {
+  to { opacity: 0; transform: translateX(30px); }
+}
+.toast { animation: toast-in 0.3s var(--spring); }
+.toast.leaving { animation: toast-out 0.25s ease forwards; }
+
+/* ---------- modal pop ---------- */
+.modal { animation: card-in 0.3s ease forwards; }
+
+/* ---------- count-up glow pulse (fires while stats count) ---------- */
+@keyframes count-pulse {
+  0%   { text-shadow: 0 0 0 transparent; }
+  50%  { text-shadow: 0 0 22px var(--accent-soft); }
+  100% { text-shadow: 0 0 0 transparent; }
+}
+.stat b.counting { animation: count-pulse 1.2s ease; }
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .scanline, #noise { display: none; }
+}
