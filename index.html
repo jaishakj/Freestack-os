@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FreeStack OS — Zero-Subscription Entertainment Dashboard</title>
+  <meta name="description" content="A personal dashboard of 40+ free, legal entertainment sources across movies, music, podcasts, games and education. 0 subscriptions required.">
+
+  <!-- styles -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body class="theme-movies">
+
+  <!-- atmosphere -->
+  <canvas id="noise" aria-hidden="true"></canvas>
+  <div class="scanline" aria-hidden="true"></div>
+
+  <!-- ================= NAVBAR ================= -->
+  <nav class="nav" id="nav">
+    <div class="logo"><span class="logo-block" aria-hidden="true"></span>FREESTACK<em>_OS</em></div>
+    <div class="nav-tabs" id="navTabs" role="tablist" aria-label="Categories"></div>
+    <button class="drawer-btn" id="drawerToggle" aria-controls="drawer" aria-expanded="false">
+      STACK <span class="count-badge" id="savedCount">0</span>
+    </button>
+    <div class="clock" id="clock" aria-label="Current time">
+      00<span class="colon">:</span>00<span class="colon">:</span>00
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <p class="eyebrow reveal rd-1" id="heroEyebrow">// ZERO-SUBSCRIPTION PROTOCOL v2.6</p>
+    <h1 class="reveal rd-2">EVERYTHING FREE.<br>NOTHING PIRATED.<span class="cursor" aria-hidden="true"></span></h1>
+    <p class="hero-sub reveal rd-3">
+      A hand-audited stack of legal, no-cost entertainment sources.
+      Press <code>1–5</code> to jump categories, <code>/</code> to search, <code>?</code> for the shortcut map.
+    </p>
+  </header>
+
+  <!-- ================= STATS BAR ================= -->
+  <section class="stats reveal rd-4" aria-label="Stack statistics">
+    <div class="stat"><b id="statSources">0</b><span>sources</span></div>
+    <div class="stat"><b id="statCats">0</b><span>categories</span></div>
+    <div class="stat"><b id="statSubs">0</b><span>subscriptions</span></div>
+  </section>
+
+  <!-- ================= SHELL: SIDEBAR + GRID ================= -->
+  <div class="shell">
+    <aside class="sidebar reveal rd-4" aria-label="Category directory">
+      <p class="side-label">// DIRECTORY</p>
+      <div class="cat-list" id="catList">
+        <span class="cat-indicator" id="catIndicator" aria-hidden="true"></span>
+      </div>
+      <div class="side-hint">
+        <kbd>1–5</kbd> switch category<br>
+        <kbd>/</kbd> focus search<br>
+        <kbd>Esc</kbd> clear / close<br>
+        <kbd>?</kbd> all shortcuts
+      </div>
+    </aside>
+
+    <main>
+      <div class="main-head">
+        <h2 class="cat-title" id="catTitle"><span class="glyph"></span><span class="ct-text"></span></h2>
+        <div class="search-wrap">
+          <input id="search" type="search" placeholder="filter sources…" aria-label="Filter sources" autocomplete="off">
+          <button class="search-clear" id="searchClear" aria-label="Clear search" hidden>✕</button>
+          <span class="slash-hint" aria-hidden="true">/</span>
+        </div>
+      </div>
+      <p class="result-count" id="resultCount" role="status" hidden></p>
+      <div class="grid" id="grid"></div>
+    </main>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="footer">
+    <span>FREESTACK_OS // built with 0 frameworks, 0 trackers, 0 subscriptions</span>
+    <span class="footer-right">all sources link to official, legal services</span>
+  </footer>
+
+  <!-- ================= BOOKMARK DRAWER ================= -->
+  <aside class="drawer" id="drawer" aria-label="Saved stack">
+    <div class="drawer-head">
+      <h2>YOUR STACK</h2>
+      <button class="drawer-x" id="drawerClose" aria-label="Close drawer">✕</button>
+    </div>
+    <div class="drawer-body" id="drawerBody"></div>
+    <div class="drawer-foot">
+      <button class="export-btn" id="exportBtn">[ EXPORT .TXT ]</button>
+    </div>
+  </aside>
+
+  <!-- ================= KEYBOARD SHORTCUT MODAL ================= -->
+  <div class="modal-scrim" id="modalScrim" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
+    <div class="modal">
+      <h2>// SHORTCUTS</h2>
+      <table>
+        <tr><td><kbd>1</kbd>–<kbd>5</kbd></td><td>switch category</td></tr>
+        <tr><td><kbd>/</kbd></td><td>focus search</td></tr>
+        <tr><td><kbd>Esc</kbd></td><td>clear search · close drawer / modal</td></tr>
+        <tr><td><kbd>S</kbd></td><td>toggle saved stack drawer</td></tr>
+        <tr><td><kbd>?</kbd></td><td>open this panel</td></tr>
+      </table>
+      <p class="close-hint">press <kbd>Esc</kbd> to close</p>
+    </div>
+  </div>
+
+  <!-- ================= TOASTS ================= -->
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <!-- scripts (ES modules — imports dedupe, app.js is the entry point) -->
+  <script type="module" src="assets/noise.js"></script>
+  <script type="module" src="js/data.js"></script>
+  <script type="module" src="js/ui.js"></script>
+  <script type="module" src="js/search.js"></script>
+  <script type="module" src="js/bookmarks.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
